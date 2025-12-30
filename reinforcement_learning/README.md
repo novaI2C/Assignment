@@ -1,99 +1,99 @@
-Reinforcement Learning: CartPole-v1 (DQN & PPO)
-Overview
+# Reinforcement Learning: CartPole-v1 (DQN & PPO)
 
-This module implements two reinforcement learning algorithms—Deep Q-Network (DQN) and Proximal Policy Optimization (PPO)—to solve the CartPole-v1 environment from OpenAI Gymnasium.
-The goal is to train agents to balance a pole on a moving cart and compare their learning behavior and stability.
+## Overview
+This folder contains implementations of two reinforcement learning algorithms — **Deep Q-Network (DQN)** and **Proximal Policy Optimization (PPO)** — for the `CartPole-v1` environment (Gymnasium). The aim is to train agents to balance the pole, compare learning behavior, and produce evaluation videos.
 
-Algorithms Implemented
-
-Deep Q-Network (DQN) – value-based, off-policy method
-
-Proximal Policy Optimization (PPO) – policy-gradient, on-policy method
-
-Both agents are trained and evaluated independently.
-
-Environment
-
-Environment: CartPole-v1
-
-State space: 4-dimensional continuous
-
-Action space: 2 discrete actions
-
-Repository Structure
+## Repository structure
+```
 rl/
 ├── train_dqn.py
 ├── evaluate_dqn.py
 ├── best_dqn_cartpole.pth
 ├── train_ppo.py
 ├── evaluate_ppo.py
-├── ppo_cartpole/
-├── ppo_logs/
-└── videos/
+├── ppo_cartpole/ # saved PPO model directory
+├── ppo_logs/ # PPO training logs (tsv/json)
+└── videos/ # rendered evaluation videos (optional)
+```
 
-Dependencies
+## Dependencies
+- `Python 3.8+`
+- `gymnasium`
+- `torch`
+- `numpy`
+- `matplotlib`
+- `stable-baselines3` (for PPO)
 
-Python 3.8+
-
-gymnasium
-
-torch
-
-numpy
-
-matplotlib
-
-stable-baselines3 (for PPO)
-
-Install using:
-
+Install with:
+```bash
 pip install gymnasium torch numpy matplotlib stable-baselines3
+```
 
-How to Run
-Train DQN
+(Install torch following the official PyTorch instructions for your OS if needed.)
+# How to run
+# Train DQN
+```bash
 python train_dqn.py
+```
 
-Evaluate DQN (rendered)
+
+Trains a DQN agent using an MLP network, replay buffer, target network.
+
+Saves best model to `best_dqn_cartpole.pth`.
+
+Produces a training plot (episode reward + moving average).
+
+# Evaluate DQN (rendered)
+```bash
 python evaluate_dqn.py
+```
 
-Train PPO
+
+Loads best_dqn_cartpole.pth.
+
+Runs a deterministic rollout with `render_mode="human"` for demo/video recording.
+
+# Train PPO
+```bash
 python train_ppo.py
+```
 
-Evaluate PPO (rendered)
+
+Uses Stable-Baselines3 PPO("MlpPolicy").
+
+Logs to `./ppo_logs/` and saves the final model as ppo_cartpole.
+
+A callback renders an episode periodically during training.
+
+# Evaluate PPO (rendered)
+```bash
 python evaluate_ppo.py
+```
 
-Outputs
+Loads ppo_cartpole and runs a deterministic human-rendered rollout.
 
-Training curves (reward vs episodes/timesteps)
+Plots training curves from `./ppo_logs/.`
 
-Saved models
+# Outputs
 
-best_dqn_cartpole.pth
+Training curves (plots)
 
-ppo_cartpole
+Saved models: `best_dqn_cartpole.pth`,`ppo_cartpole`
 
-Rendered evaluation videos (screen-recorded and stored in videos/)
+Rendered evaluation videos (store under videos/ if created)
 
-Evaluation Criteria
+# Evaluation criteria (what to look for)
 
-Agents are evaluated based on:
+Learning curves (reward vs timesteps/episodes)
 
-Learning curves
+Average reward per episode
 
-Average episode reward
+Training stability (variance of rewards)
 
-Training stability
+Qualitative behavior in rendered demos
 
-Qualitative behavior during rendered evaluation
+# Notes
 
-Platform Compatibility
+PPO generally shows smoother, more stable training curves in these scripts; DQN is a baseline with replay buffer.
 
-Runs on x86_64 and ARM
-
-CPU-only execution supported
-
-Notes
-
-PPO demonstrates smoother and more stable learning compared to DQN.
-
-DQN serves as a strong baseline with replay-buffer-based learning.
+Scripts are CPU-compatible and tested on standard x86_64 environments. ARM should work with standard Python packages.
