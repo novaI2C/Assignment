@@ -14,6 +14,7 @@ reinforcement_learning/
 ├── ppo_cartpole/ # saved PPO model directory
 ├── ppo_logs/ # PPO training logs (tsv/json)
 └── videos/ # rendered videos
+└── images/ #graphs
 ```
 
 ## Dependencies
