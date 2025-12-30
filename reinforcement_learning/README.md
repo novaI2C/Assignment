@@ -5,7 +5,7 @@ This folder contains implementations of two reinforcement learning algorithms �
 
 ## Repository structure
 ```
-rl/
+reinforcement_learning/
 ├── train_dqn.py
 ├── evaluate_dqn.py
 ├── best_dqn_cartpole.pth
