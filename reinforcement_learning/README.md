@@ -13,7 +13,7 @@ reinforcement_learning/
 ├── evaluate_ppo.py
 ├── ppo_cartpole/ # saved PPO model directory
 ├── ppo_logs/ # PPO training logs (tsv/json)
-└── videos/ # rendered evaluation videos (optional)
+└── videos/ # rendered videos
 ```
 
 ## Dependencies
